@@ -7,14 +7,14 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import styled, { ThemeProvider } from 'styled-components';
+import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
-import GlobalStyle from '../styles/GlobalStyle';
-import Nav from "../components/nav";
+import GlobalStyle from "../styles/GlobalStyle"
+import Nav from "../components/nav"
 
 const Footer = styled.footer`
   padding: 1em;
-`;
+`
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -31,11 +31,9 @@ const Layout = ({ children }) => {
       <Nav siteTitle={data.site.siteMetadata.title} />
       <div>
         <main>{children}</main>
-        <Footer>
-          © Waag {new Date().getFullYear()}
-        </Footer>
+        <Footer>© Waag {new Date().getFullYear()}</Footer>
       </div>
-      <GlobalStyle/>
+      <GlobalStyle />
     </>
   )
 }

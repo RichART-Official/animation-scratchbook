@@ -20,7 +20,7 @@ module.exports = {
         // Add any options here
       },
     },
-    'gatsby-plugin-sass',
+    "gatsby-plugin-sass",
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
