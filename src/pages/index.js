@@ -38,7 +38,7 @@ const IndexPage = () => {
   
   // ScrollMagic Scenes
   let scene = new ScrollMagic.Scene({
-      duration: 11000,
+      duration: 10000,
       triggerHook: 0
     })
   useEffect(()=> {
@@ -48,17 +48,20 @@ const IndexPage = () => {
   })
 
   // Video animation
-  let scrollPos;
-  let delay;
+  let scrollPos = 0;
+  let delay = 0;
   const accelerationAmount = 0.1;
   scene.on('update', e => {
     scrollPos = e.scrollPos / 1000;
   })
 
   setInterval(() => {
+    // BUG: There might be a problem here that makes the video run choppy.
     delay += (scrollPos - delay) * accelerationAmount;
-    console.log(scrollPos, delay);
-    // videoElement.currentTime = 5;
+    if (videoElement != null) {
+      videoElement.currentTime = delay;
+    }
+    
   }, 40)
   
   return (
