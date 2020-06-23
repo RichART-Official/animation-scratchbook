@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components'
 
 const NavBase = styled.nav`
-    padding: 0.33em;
+    padding: 1em;
     width: 100%;
+    position: absolute;
 `;
 
 const Nav = () => (

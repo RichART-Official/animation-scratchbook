@@ -7,10 +7,14 @@
 
 import React from "react"
 import PropTypes from "prop-types"
+import styled, { ThemeProvider } from 'styled-components';
 import { useStaticQuery, graphql } from "gatsby"
-
+import GlobalStyle from '../styles/GlobalStyle';
 import Nav from "../components/nav";
 
+const Footer = styled.footer`
+  padding: 1em;
+`;
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -27,12 +31,11 @@ const Layout = ({ children }) => {
       <Nav siteTitle={data.site.siteMetadata.title} />
       <div>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        <Footer>
+          © Waag {new Date().getFullYear()}
+        </Footer>
       </div>
+      <GlobalStyle/>
     </>
   )
 }
