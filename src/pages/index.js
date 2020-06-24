@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import styled from "styled-components"
 import * as ScrollMagic from "scrollmagic"
 
@@ -27,7 +27,7 @@ const HeroTitle = styled.h1`
 `
 
 const IndexPage = () => {
-  // const [ scrollPos, setScrollPos ] = useState(0)
+   const [ delayedScrollPos, setDelayedScrollPos ] = useState(0)
 
   let introSection = useRef(null)
   let videoElement = useRef(null)
@@ -37,7 +37,7 @@ const IndexPage = () => {
 
   // ScrollMagic Scenes
   let scene = new ScrollMagic.Scene({
-    duration: 10000,
+    duration: 11000,
     triggerHook: 0,
   })
 
@@ -57,7 +57,7 @@ const IndexPage = () => {
     // BUG: There might be a problem here that makes the video run choppy.
     delay += (scrollPos - delay) * accelerationAmount
     if (videoElement != null) {
-      videoElement.currentTime = delay
+      videoElement.currentTime = scrollPos;
     }
   }, 40)
 
@@ -71,7 +71,7 @@ const IndexPage = () => {
       >
         <HeroTitle>Technology is broken</HeroTitle>
         <Video
-          autoplay="true"
+          autoplay
           src={animation}
           ref={el => {
             videoElement = el
