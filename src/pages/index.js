@@ -1,13 +1,15 @@
-import React, { useRef, useEffect, useState } from "react"
-import styled from "styled-components"
-import * as ScrollMagic from "scrollmagic"
+import React, { useRef, useEffect, useState } from "react";
+import styled from "styled-components";
+import * as ScrollMagic from "scrollmagic";
+import Lottie from 'lottie-web-react';
 
-import SEO from "../components/seo"
-import Layout from "../layouts/defaultLayout"
-import animation from "../assets/video/animation.mp4"
+import SEO from "../components/seo";
+import Layout from "../layouts/defaultLayout";
+import animation from "../assets/animations/eye-animation.json";
 
 const Intro = styled.div`
   height: 100vh;
+  background: navy;
 `
 
 const Video = styled.video`
@@ -26,56 +28,23 @@ const HeroTitle = styled.h1`
   text-align: center;
 `
 
+let animationObject = null;
+
 const IndexPage = () => {
-   const [ delayedScrollPos, setDelayedScrollPos ] = useState(0)
-
-  let introSection = useRef(null)
-  let videoElement = useRef(null)
-
-  // Init ScrollMagic Controller
-  const controller = new ScrollMagic.Controller()
-
-  // ScrollMagic Scenes
-  let scene = new ScrollMagic.Scene({
-    duration: 11000,
-    triggerHook: 0,
-  })
-
-  useEffect(() => {
-    scene.triggerElement(introSection).setPin(introSection).addTo(controller)
-  })
-
-  // Video animation
-  let scrollPos = 0
-  let delay = 0
-  const accelerationAmount = 0.1
-  scene.on("update", e => {
-    scrollPos = e.scrollPos / 1000
-  })
-
-  setInterval(() => {
-    // BUG: There might be a problem here that makes the video run choppy.
-    delay += (scrollPos - delay) * accelerationAmount
-    if (videoElement != null) {
-      videoElement.currentTime = scrollPos;
-    }
-  }, 40)
-
   return (
     <Layout>
       <SEO/>
-      <Intro
-        ref={el => {
-          introSection = el
-        }}
-      >
-        <HeroTitle>Technology is broken</HeroTitle>
-        <Video
-          autoplay
-          src={animation}
-          ref={el => {
-            videoElement = el
+      <Intro>
+      <Lottie
+          options={{
+            renderer:  'svg',
+            loop:  false,
+            autoplay:  false,
+            animationData:  animation,
           }}
+          playingState={'play'}
+          speed={1}
+          direction={1}
         />
       </Intro>
     </Layout>
