@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import * as ScrollMagic from "scrollmagic";
 import Lottie from 'lottie-web-react';
+import lottie from 'lottie-web';
 
 import SEO from "../components/seo";
 import Layout from "../layouts/defaultLayout";
@@ -34,6 +35,7 @@ const HeroTitle = styled.h1`
 let animationObject = null;
 
 const EyeAnimation = ({x, y, w}) => {
+
   const PositionedAnimation = styled(Lottie)`
     position: relative;
   `;
@@ -53,13 +55,26 @@ const EyeAnimation = ({x, y, w}) => {
 };
 
 const IndexPage = () => {
+  let animationTarget = useRef(null);
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: animationTarget,
+      renderer: 'svg',
+      loop: false,
+      autoplay: true,
+      animationData: animation 
+    });
+  });
+  
+
   return (
     <Layout>
       <SEO/>
       
       <Intro>
         <Container>
-          <EyeAnimation/>
+          <div ref={el => animationTarget = el} />
           <HeroTitle>We are being watched all the time</HeroTitle>
         </Container>
         
