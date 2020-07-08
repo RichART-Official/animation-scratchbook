@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: Maax, avenir, sans-serif;
         background: black;
     }
-    p{
+    p, li{
         margin-top: 1em;
     }
 `
