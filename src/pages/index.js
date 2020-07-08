@@ -1,7 +1,9 @@
+// This is a prototype. Do not use this code on a production website!
+
 import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import * as ScrollMagic from "scrollmagic";
-import Lottie from 'lottie-web-react';
+import gsap from 'gsap';
 import lottie from 'lottie-web';
 
 import SEO from "../components/seo";
@@ -43,7 +45,6 @@ const TitleTwo = styled(HeroTitle)`
   text-align: center;
   position: relative;
   top: none;
-  visibility: hidden;
 `;
 
 const AnimationWrapper = styled.figure`
@@ -54,58 +55,76 @@ const PartsList = styled.ul`
   position: absolute;
   left: 55vw;
   width: 20vw;
-  top: 40vh;
+  top: 20vh;
   list-style: none;
   z-index: 10;
-  visibility: hidden;
 `;
 
 const Part = styled.li`
   position: relative;
-  margin-top: 3em;
+  margin-top: 2 em;
+  font-size: 1.33em;
 `;
 
-let animationObject = null;
+const Lines = styled.ul`
+  position: absolute;
+  list-style: none;
+  width: 20rem;
+  height: 0.05rem;
+  background: black;
+  &:nth-child(1) {
+    transform: translateY(-50%) rotate(45deg);
+  }
+`;
 
-const PhoneAnimation = ({x, y, w, rotation}) => {
+const IndexPage = () => {
+  let heroTitle = useRef(null);
+  let titleTwo = useRef(null);
+  let wrapper = useRef(null);
+  let list = useRef(null);
   let animationTarget = useRef(null);
-
-  const Animation = styled.div`
-    width: ${props => props.w | 25}rem;
-    position: absolute;
-    left: ${props => props.x | 50}vw;
-    top: ${props => props.y | 50}vh;
-    transform: rotate(${props => props.rotation | 0}deg) translate(-50%, -50%);
-    z-index: 0;
-  `;
+  let phoneAnimation;
 
   useEffect(() => {
-    lottie.loadAnimation({
+    phoneAnimation = lottie.loadAnimation({
       container: animationTarget,
       renderer: 'svg',
       loop: false,
       autoplay: false,
       animationData: animation 
     });
-  });
 
-  return (
-    <Animation x={x} y={y} w={w} rotation={rotation} ref={el => animationTarget = el} />
-  )
-};
+    const tl = gsap.timeline();
+    tl.to(heroTitle, {opacity: 0, delay: 1})
+    .to(wrapper, {background: '#C7E4FF'})
+    .fromTo(animationTarget, {rotate: 20, scale: 1.6}, {rotate: 0, scale: 1, y: '-5%', onComplete: () => phoneAnimation.playSegments([0,11], true)})
+    .fromTo(titleTwo, {opacity: 0}, {opacity: 1, y: '20%', delay: 1})
+    .to(titleTwo, {opacity: 0})
+    .to(animationTarget, {x: '-75%', y: '0', scale: 1.2, delay: 1, onComplete: () => phoneAnimation.playSegments([12,24], true)})
+    .fromTo(list, {opacity: 0}, {opacity: 1, delay: 1})
+  })
+  
+  const Animation = styled.div`
+    width: ${props => props.w | 20}rem;
+    position: absolute;
+    left: ${props => props.x | 50}vw;
+    top: ${props => props.y | 50}vh;
+    transform: rotate(${props => props.rotation | 0}deg) translate(-50%, -50%);
+    z-index: 0;
+  `;  
 
-const IndexPage = () => {
   return (
     <Layout>
       <SEO/>
-      <Intro>
+      <Intro ref={el => wrapper = el}>
         <Container>
-        <HeroTitle>Technology is kinda broken right now</HeroTitle>
+        <HeroTitle ref={el => heroTitle = el}>Technology is kinda broken right now</HeroTitle>
         </Container>
         <Container>
-        <TitleTwo>But we can fix it!</TitleTwo>
+        <TitleTwo color="black" ref={el => titleTwo = el}>But we can fix it!</TitleTwo>
         </Container>
-        <PartsList>
+        <PartsList ref={el => list = el}>
+          <h1>Parts</h1>
           <Part>Dolor veritatis et unde. Vel sint quia magni adipisci. Corrupti laudantium quia rem sapiente laboriosam ut.</Part>
           <Part>Dolor veritatis et unde. Vel sint quia magni adipisci. Corrupti laudantium quia rem sapiente laboriosam ut.</Part>
           <Part>Dolor veritatis et unde. Vel sint quia magni adipisci. Corrupti laudantium quia rem sapiente laboriosam ut.</Part>
@@ -113,10 +132,8 @@ const IndexPage = () => {
       </Intro>
       
       <AnimationWrapper>
-        <PhoneAnimation rotation={30}/>
-        <PhoneAnimation rotation={-20}/>
-        <PhoneAnimation rotation={10}/>
-        <PhoneAnimation rotation={45} />
+        {/* BUG: when I have to add a ref to a self-made imported React element, the prop does not get passed through correctly */}
+        <Animation ref={el => animationTarget = el}/>
       </AnimationWrapper>
       
       

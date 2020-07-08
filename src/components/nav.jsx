@@ -8,7 +8,7 @@ const NavBase = styled.nav`
   position: absolute;
   z-index: 10;
   * {
-    color: white;
+    color: gray;
   }
 `
 
