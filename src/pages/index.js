@@ -55,7 +55,8 @@ const PartsList = styled.ul`
   position: absolute;
   left: 55vw;
   width: 20vw;
-  top: 20vh;
+  top: 50vh;
+  transform: translateY(-50%);
   list-style: none;
   z-index: 10;
 `;

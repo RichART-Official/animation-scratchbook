@@ -7,16 +7,32 @@ const NavBase = styled.nav`
   width: 100%;
   position: absolute;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   * {
     color: gray;
+    margin: 0;
+    padding: 0;
+  }
+  div > * {
+    display: inline;
   }
 `
 
 const Nav = () => (
   <NavBase>
     <Link to='/'>
-      <h3>Public Stack</h3>
+      <h3>Animation Scratchbook</h3>
     </Link>
+    <div>
+    <Link to='/'>
+      <p>Home</p>
+    </Link>
+    <Link to='/plane'>
+      <p>Plane</p>
+    </Link>
+    </div>
   </NavBase>
 )
 

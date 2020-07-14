@@ -8,10 +8,14 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         font-family: Maax, avenir, sans-serif;
-        background: black;
+        background: whitesmoke;
     }
     p, li{
         margin-top: 1em;
+    }
+
+    h1 {
+        font-size: 5rem;
     }
 `
 
