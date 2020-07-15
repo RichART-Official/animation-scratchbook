@@ -17,6 +17,11 @@ const GlobalStyle = createGlobalStyle`
     h1 {
         font-size: 5rem;
     }
+
+    caption {
+        font-size: 0.66rem;
+        color: gray;
+    }
 `
 
 export default GlobalStyle

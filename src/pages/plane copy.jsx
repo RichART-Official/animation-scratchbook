@@ -30,7 +30,7 @@ const Header = styled.header`
 
 const Container = styled.div`
   width: 100rem;
-  padding: 5em;
+  padding: 3em;
   margin: 0 auto;
   overflow: hidden;
   padding: 5vh 0;
@@ -91,7 +91,7 @@ const Plane = () => {
       },
       motionPath: flightPath,
       opacity: 1,
-      duration: 10,
+      duration: 5,
       ease: Power1.easeInOut
     })
   })

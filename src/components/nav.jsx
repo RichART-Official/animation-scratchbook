@@ -5,7 +5,7 @@ import {Link} from 'gatsby';
 const NavBase = styled.nav`
   padding: 1em;
   width: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -13,9 +13,7 @@ const NavBase = styled.nav`
   * {
     color: gray;
     margin: 0;
-    padding: 0;
-  }
-  div > * {
+    padding: 0.33em;
     display: inline;
   }
 `
@@ -31,6 +29,9 @@ const Nav = () => (
     </Link>
     <Link to='/plane'>
       <p>Plane</p>
+    </Link>
+    <Link to='/phone'>
+      <p>Phone</p>
     </Link>
     </div>
   </NavBase>
