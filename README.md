@@ -1,4 +1,4 @@
-# Public Stack concept site
+# Animation Scratchbook
 
 Proof of concept website Public Stack by Richard van 't Hof
 
