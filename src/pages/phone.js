@@ -78,7 +78,7 @@ const Lines = styled.ul`
   }
 `;
 
-const IndexPage = () => {
+const Phone = () => {
   let heroTitle = useRef(null);
   let titleTwo = useRef(null);
   let wrapper = useRef(null);
@@ -99,6 +99,7 @@ const IndexPage = () => {
       scrollTrigger: {
         trigger: wrapper,
         start: "10px top",
+        end: "",
         toggleActions: "play none reverse reset",
         markers: true,
         scrub: 0.5,
@@ -154,4 +155,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default Phone
