@@ -15,13 +15,13 @@ const Logo = styled(Link)`
     font-weight: 700;
 `;
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.header`
+    width: 100%;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1em;
-    width: 100%;
-    position: relative;
     @media ${xs} {
         padding: 2em 0;
     }
