@@ -33,6 +33,9 @@ const Nav = () => (
     <Link to='/phone'>
       <p>Phone</p>
     </Link>
+    <Link to='/awwwards-site/'>
+      <p>Awwards-site remake</p>
+    </Link>
     </div>
   </NavBase>
 )
