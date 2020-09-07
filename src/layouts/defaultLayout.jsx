@@ -9,7 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
-import GlobalStyle from "../styles/GlobalStyle"
+import GlobalStyle from "../styles/globalStyle"
 import Nav from "../components/nav"
 
 const Footer = styled.footer`

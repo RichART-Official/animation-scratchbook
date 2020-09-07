@@ -8,7 +8,6 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         font-family: Maax, avenir, sans-serif;
-        background: whitesmoke;
     }
     p, li{
         margin-top: 1em;
@@ -21,6 +20,10 @@ const GlobalStyle = createGlobalStyle`
     caption {
         font-size: 0.66rem;
         color: gray;
+    }
+
+    .fixed {
+        position: fixed;
     }
 `
 

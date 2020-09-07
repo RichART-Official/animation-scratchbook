@@ -35,21 +35,22 @@ theme.breakpoints = {
   xxl: "192em",
 }
 
-theme.mediaQueries = {
+theme.mediaQuery = {
   xs: `(min-width: ${theme.breakpoints.xs})`,
   sm: `(min-width: ${theme.breakpoints.sm})`,
   md: `(min-width: ${theme.breakpoints.md})`,
   lg: `(min-width: ${theme.breakpoints.lg})`,
   xl: `(min-width: ${theme.breakpoints.xl})`,
-  // xxl: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 200dpi)",
   xxl: `(-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) and (min-width: ${theme.breakpoints.xxl})`,
 }
 
 theme.container = {
-  sm: "4vw",
-  md: "8vw",
-  lg: "12vw",
-  xl: "18vw",
+  xxs: "1vw",
+  xs: "4vw",
+  sm: "8vw",
+  md: "12vw",
+  lg: "18vw",
+  xl: "25vw",
 }
 
 theme.typography = {
