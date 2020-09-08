@@ -6,18 +6,17 @@ import {Link} from 'gatsby';
 import theme from '../../styles/theme';
 
 const {xs} = theme.mediaQuery;
+const {black, white, bgLight} = theme.colors;
 
 const Logo = styled(Link)`
     text-decoration: none;
     font-size: 1.2rem;
-    letter-spacing: 0.5rem;
-    color: black;
+    letter-spacing: 0.22em;
+    color: ${black};
     font-weight: 700;
 `;
 
-const HeaderWrapper = styled.header`
-    width: 100%;
-    position: relative;
+const HeaderBase = styled(Container)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,23 +33,32 @@ const HamburgerBtn = styled.div`
     }
     span {
         margin-bottom: 0.33rem;
-        background: black;
+        background: ${black};
         height: 0.066rem;
         width: 100%;
         display: block;
     }
 `;
 
+const HeaderWrapper = styled.header`
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    cursor: pointer;
+`;
+
 const Header = () => (
-    <Container>
-        <HeaderWrapper className="fixed">
-            <Logo>Agency</Logo>
+    <HeaderWrapper>
+        <HeaderBase>
+            <Logo>Richard.</Logo>
             <HamburgerBtn>
                 <span/>
                 <span/>
             </HamburgerBtn>
-        </HeaderWrapper>
-    </Container>
+        </HeaderBase>
+    </HeaderWrapper>
+    
+
         
 );
 

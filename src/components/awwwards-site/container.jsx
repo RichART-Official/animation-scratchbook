@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 
-const {mediaQuery, container} = theme;
+const {mediaQuery, container, center} = theme;
 
 const ContainerBase = styled.div`
     margin: ${container.xxs};
@@ -23,8 +23,8 @@ const ContainerBase = styled.div`
     };
 `;
 
-const Container = ({children}) => (
-    <ContainerBase>
+const Container = ({className, children}) => (
+    <ContainerBase className={className}>
         {children}
     </ContainerBase>
 );

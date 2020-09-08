@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from '../../styles/globalStyle';
-import theme from '../../styles/theme';
 
 import Header from '../../components/awwwards-site/header';
 import Container from '../../components/awwwards-site/container';
+import {GenerateCases} from '../../components/awwwards-site/case';
 
+import theme from '../../styles/theme';
+import innerHeight from '../../library/innerHeight';
+
+import caseStudies from '../../assets/data/posts';
 import josefinSans from '../../assets/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf';
 import josefinSansItalic from '../../assets/fonts/Josefin_Sans/JosefinSans-Italic-VariableFont_wght.ttf';
 
-import rightArrow from '../../assets/vectors/arrow-right.svg';
+import RightArrow from '../../assets/vectors/arrow-right.svg';
 
-const {xs} = theme.mediaQuery;
+const {xs, sm} = theme.mediaQuery;
+const {black, white, bgLight} = theme.colors;
 
 const Layout = styled.div`
 margin: 0;
@@ -22,7 +27,6 @@ padding: 0;
     }
     * {
         font-family: 'Josefin Sans', sans-serif;
-        transition: 0.3s ease-in-out;
     }
     
 `;
@@ -30,28 +34,58 @@ padding: 0;
 const Content = styled.main`
     display: flex;
     flex-direction: column;
-    @media ${xs} {
-        display: grid;
-    }
-    grid-template-rows: 50vh 50vh;
-    align-items: center;
+    color: ${black};
+
 `;
 
-const Banner = styled(Container)`
+const Banner = styled.section`
+    padding: 1em;
     height: 50vh;
-    @media ${xs} {
-        height: none;
+    height: ${innerHeight(50)};
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 15rem;
+    background-color: ${white};
+    ${xs} {
+        padding: 0em;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: ${black};
+        visibility: hidden;
     }
 `;
 
-const Cases = styled.section`
-`;
+const Cases = ({children}) => {
+    const Base = styled.section`
+        height: 50vh;
+        height: ${innerHeight(50)};
+        display: flex;
+        background: ${bgLight};
+        flex-wrap: wrap;
+    `;
+    return (
+        <Base>
+            {children}
+        </Base>
+    );
+}
 
 const HeroTitle = styled.div`
-    font-size: 2.66rem;
+    font-size: 1.66rem;
     font-weight: bold;
+    line-height: 1.11em;
+    color: ${white};
+    mix-blend-mode: difference;
     @media ${xs} {
-        font-size: 5rem;
+        font-size: 3.33rem;
     }
 `;
 
@@ -59,43 +93,73 @@ const Button = styled.a`
     display: flex;
     justify-items: center;
     align-items: center;
-    margin: 1em;
+    margin: 1em 0.33em;
     font-size: 1rem;
+    cursor: pointer;
     @media ${xs} {
         font-size: 1.33rem;
     }
-    img {
-        border: 0.01em solid black;
-        border-radius: 1000px;
-        padding: 0.66em;
-        margin-left: 1em;
+    &:hover {
+        svg {
+            background: ${black};
+            line, polyline {
+                stroke: ${white};
+            }
+        }
+    }
+`;
+
+const StyledRightArrow = styled(RightArrow)`
+    transition: 0.1s ease-in-out;
+    width: 2.33em;
+    height: 2.33em;
+    padding: 0.66em;
+    margin-left: 0.66em;
+    border: solid ${black} 0.01em;
+    border-radius: 5em;
+`;
+
+const BannerContainer = styled(Container)`
+    margin-top: 2em;
+    ${xs} {
+        margin-top: 1.33em;
+    }
+    ${sm} {
+        margin-top: 0;
     }
 `;
 
 
-const Index = () => (
-    <Layout>
-        <Header/>
-        <Content>
-            <Banner>
-                <HeroTitle>
-                    <span>Creating unique brand is</span>
-                </HeroTitle>
-                <HeroTitle>
-                    <span>What we do</span>
-                </HeroTitle>
-                <Button>
-                    <span>More about us</span>
-                    <img src={rightArrow} />
-                </Button>
-            </Banner>
-            <Cases>
 
-            </Cases>
-        </Content>
-        
-        <GlobalStyle/>
-    </Layout>
-)
+const Index = () => {
+    return (
+        <Layout>
+            <Header/>
+            <Content>
+                <Banner>
+                    <BannerContainer>
+                        <HeroTitle >
+                            <span>Creating things is</span>
+                        </HeroTitle>
+                        <HeroTitle>
+                            <span>what I do</span>
+                        </HeroTitle>
+                        <Button>
+                            <span>More about me</span>
+                            <StyledRightArrow/>
+                        </Button>
+                    </BannerContainer>
+                </Banner>
+                <Cases innerHeight={innerHeight}>
+                    <GenerateCases
+                        posts={caseStudies}
+                    />
+                </Cases>
+            </Content>
+            
+            <GlobalStyle/>
+        </Layout>
+    )
+}
 
 export default Index;

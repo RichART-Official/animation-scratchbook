@@ -1,28 +1,14 @@
 const theme = {}
 
 const white = "#FFFFFF"
-const black = "rgba(0,0,0,0.9)"
-const darkBlue = "#000E41"
-const darkGray = "#787878"
-const middleGray = "#EEEEEE"
+const black = "#000000"
+const transparentBlack = "rgba(0,0,0,0.55)"
 const lightGray = "#F6F6F6"
-const teal = "#7985B0"
-const blue = "#414C74"
-const yellow = "#FFFC62"
 
 theme.colors = {
-  primairy: blue,
-  secundairy: yellow,
-  yellow,
-  darkBlue,
   black,
   white,
-  blue,
-  teal,
-  bgContent: middleGray,
-  textDark: black,
-  textLight: blue,
-  bgDark: darkGray,
+  shadow: transparentBlack,
   bgLight: lightGray,
 }
 
