@@ -2,13 +2,17 @@ const theme = {}
 
 const white = "#FFFFFF"
 const black = "#000000"
-const transparentBlack = "rgba(0,0,0,0.55)"
+const shadow = "rgba(0,0,0,0.55)"
+const transparentBlack = "rgba(0,0,0,0.33)"
+const transparentWhite = "rgba(255,255,255,0.15)"
 const lightGray = "#F6F6F6"
 
 theme.colors = {
   black,
   white,
-  shadow: transparentBlack,
+  shadow,
+  transparentBlack, 
+  transparentWhite,
   bgLight: lightGray,
 }
 

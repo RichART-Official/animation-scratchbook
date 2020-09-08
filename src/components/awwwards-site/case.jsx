@@ -24,6 +24,7 @@ const Case = ({img, title, subtitle, url}) => {
         cursor: pointer;
         text-decoration: none;
         flex-wrap: wrap;
+        flex-grow: 1;
         @media ${sm} {
             width: 33vw;
             flex-basis: 33%;

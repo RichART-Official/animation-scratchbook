@@ -4,6 +4,7 @@ import GlobalStyle from '../../styles/globalStyle';
 
 import Header from '../../components/awwwards-site/header';
 import Container from '../../components/awwwards-site/container';
+import ArrowBtn, {MinimalArrowBtn} from '../../components/awwwards-site/arrowBtn';
 import {GenerateCases} from '../../components/awwwards-site/case';
 
 import theme from '../../styles/theme';
@@ -13,7 +14,6 @@ import caseStudies from '../../assets/data/posts';
 import josefinSans from '../../assets/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf';
 import josefinSansItalic from '../../assets/fonts/Josefin_Sans/JosefinSans-Italic-VariableFont_wght.ttf';
 
-import RightArrow from '../../assets/vectors/arrow-right.svg';
 
 const {xs, sm} = theme.mediaQuery;
 const {black, white, bgLight} = theme.colors;
@@ -70,11 +70,31 @@ const Cases = ({children}) => {
         display: flex;
         background: ${bgLight};
         flex-wrap: wrap;
+        
     `;
+
+    const Navigation = styled.div`
+        position: absolute;
+        bottom: 0;
+        z-index: 5;
+        width: 100%;
+        justify-content: space-between;
+        padding: 2em;
+        display: none;
+        @media ${sm} {
+            display: flex;
+        }
+    `;
+
     return (
         <Base>
             {children}
+            <Navigation>
+                <ArrowBtn disabled left/>
+                <ArrowBtn/>
+            </Navigation>
         </Base>
+        
     );
 }
 
@@ -109,15 +129,7 @@ const Button = styled.a`
     }
 `;
 
-const StyledRightArrow = styled(RightArrow)`
-    transition: 0.1s ease-in-out;
-    width: 2.33em;
-    height: 2.33em;
-    padding: 0.66em;
-    margin-left: 0.66em;
-    border: solid ${black} 0.01em;
-    border-radius: 5em;
-`;
+
 
 const BannerContainer = styled(Container)`
     margin-top: 2em;
@@ -146,7 +158,7 @@ const Index = () => {
                         </HeroTitle>
                         <Button>
                             <span>More about me</span>
-                            <StyledRightArrow/>
+                            <MinimalArrowBtn />
                         </Button>
                     </BannerContainer>
                 </Banner>
