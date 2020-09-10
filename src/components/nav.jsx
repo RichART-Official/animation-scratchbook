@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {Link} from 'gatsby';
+import { Link } from "gatsby"
 
 const NavBase = styled.nav`
   padding: 1em;
@@ -20,22 +20,22 @@ const NavBase = styled.nav`
 
 const Nav = () => (
   <NavBase>
-    <Link to='/'>
+    <Link to="/">
       <h3>Animation Scratchbook</h3>
     </Link>
     <div>
-    <Link to='/'>
-      <p>Home</p>
-    </Link>
-    <Link to='/plane'>
-      <p>Plane</p>
-    </Link>
-    <Link to='/phone'>
-      <p>Phone</p>
-    </Link>
-    <Link to='/awwwards-site/'>
-      <p>Agency</p>
-    </Link>
+      <Link to="/">
+        <p>Home</p>
+      </Link>
+      <Link to="/plane">
+        <p>Plane</p>
+      </Link>
+      <Link to="/phone">
+        <p>Phone</p>
+      </Link>
+      <Link to="/awwwards-site/">
+        <p>Agency</p>
+      </Link>
     </div>
   </NavBase>
 )

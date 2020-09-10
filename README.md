@@ -3,14 +3,16 @@
 Proof of concept website Public Stack by Richard van 't Hof
 
 ## 📦 Dependencies
+
 To run this program you need the following dependencies:
+
 - [NodeJS](https://nodejs.org/en/download/package-manager/)
 
 ## 🚀 Quick start
 
 1.  **Start developing.**
 
-    Open your terminal. Then, use ```cd path/to/Public-Stack_movement-concept``` (for mac users: you can drag the folder into the terminal for the right file path) to navigate to the project directory. Start the project using the following command
+    Open your terminal. Then, use `cd path/to/Public-Stack_movement-concept` (for mac users: you can drag the folder into the terminal for the right file path) to navigate to the project directory. Start the project using the following command
 
     ```shell
     yarn dev
@@ -20,8 +22,7 @@ To run this program you need the following dependencies:
 
     The site is now running at `http://localhost:8000`!
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql).
-
+    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`\_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql).
 
 ## 🧐 What's inside?
 

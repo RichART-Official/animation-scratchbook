@@ -1,177 +1,89 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import GlobalStyle from '../../styles/globalStyle';
+import React, { useEffect, useRef } from "react"
+import styled from "styled-components"
+import GlobalStyle from "../../styles/globalStyle"
+import gsap from "gsap"
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 
-import Header from '../../components/awwwards-site/header';
-import Container from '../../components/awwwards-site/container';
-import ArrowBtn, {MinimalArrowBtn} from '../../components/awwwards-site/arrowBtn';
-import {GenerateCases} from '../../components/awwwards-site/case';
+import Header from "../../components/awwwards-site/header"
+import Banner from "../../components/awwwards-site/banner"
+import Cases from "../../components/awwwards-site/case"
 
-import theme from '../../styles/theme';
-import innerHeight from '../../library/innerHeight';
+import theme from "../../styles/theme"
+import caseStudies from "../../assets/data/posts"
 
-import caseStudies from '../../assets/data/posts';
-import josefinSans from '../../assets/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf';
-import josefinSansItalic from '../../assets/fonts/Josefin_Sans/JosefinSans-Italic-VariableFont_wght.ttf';
+import josefinSans from "../../assets/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf"
+import josefinSansItalic from "../../assets/fonts/Josefin_Sans/JosefinSans-Italic-VariableFont_wght.ttf"
 
-
-const {xs, sm} = theme.mediaQuery;
-const {black, white, bgLight} = theme.colors;
+const { black } = theme.colors
 
 const Layout = styled.div`
-margin: 0;
-padding: 0;
-    @font-face {
-        font-family: 'Josefin Sans';
-        src: url(${josefinSans}), url(${josefinSansItalic});
-    }
-    * {
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    
-`;
+  margin: 0;
+  padding: 0;
+  @font-face {
+    font-family: "Josefin Sans";
+    src: url(${josefinSans}), url(${josefinSansItalic});
+  }
+  * {
+    font-family: "Josefin Sans", sans-serif;
+  }
+`
+gsap.registerPlugin(CSSRulePlugin);
 
 const Content = styled.main`
-    display: flex;
-    flex-direction: column;
-    color: ${black};
-
-`;
-
-const Banner = styled.section`
-    padding: 1em;
-    height: 50vh;
-    height: ${innerHeight(50)};
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 15rem;
-    background-color: ${white};
-    ${xs} {
-        padding: 0em;
-    }
-    &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: ${black};
-        visibility: hidden;
-    }
-`;
-
-const Cases = ({children}) => {
-    const Base = styled.section`
-        height: 50vh;
-        height: ${innerHeight(50)};
-        display: flex;
-        background: ${bgLight};
-        flex-wrap: wrap;
-        
-    `;
-
-    const Navigation = styled.div`
-        position: absolute;
-        bottom: 0;
-        z-index: 5;
-        width: 100%;
-        justify-content: space-between;
-        padding: 2em;
-        display: none;
-        @media ${sm} {
-            display: flex;
-        }
-    `;
-
-    return (
-        <Base>
-            {children}
-            <Navigation>
-                <ArrowBtn disabled left/>
-                <ArrowBtn/>
-            </Navigation>
-        </Base>
-        
-    );
-}
-
-const HeroTitle = styled.div`
-    font-size: 1.66rem;
-    font-weight: bold;
-    line-height: 1.11em;
-    color: ${white};
-    mix-blend-mode: difference;
-    @media ${xs} {
-        font-size: 3.33rem;
-    }
-`;
-
-const Button = styled.a`
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    margin: 1em 0.33em;
-    font-size: 1rem;
-    cursor: pointer;
-    @media ${xs} {
-        font-size: 1.33rem;
-    }
-    &:hover {
-        svg {
-            background: ${black};
-            line, polyline {
-                stroke: ${white};
-            }
-        }
-    }
-`;
-
-
-
-const BannerContainer = styled(Container)`
-    margin-top: 2em;
-    ${xs} {
-        margin-top: 1.33em;
-    }
-    ${sm} {
-        margin-top: 0;
-    }
-`;
-
-
+  display: flex;
+  flex-direction: column;
+  color: ${black};
+`
 
 const Index = () => {
-    return (
-        <Layout>
-            <Header/>
-            <Content>
-                <Banner>
-                    <BannerContainer>
-                        <HeroTitle >
-                            <span>Creating things is</span>
-                        </HeroTitle>
-                        <HeroTitle>
-                            <span>what I do</span>
-                        </HeroTitle>
-                        <Button>
-                            <span>More about me</span>
-                            <MinimalArrowBtn />
-                        </Button>
-                    </BannerContainer>
-                </Banner>
-                <Cases innerHeight={innerHeight}>
-                    <GenerateCases
-                        posts={caseStudies}
-                    />
-                </Cases>
-            </Content>
-            
-            <GlobalStyle/>
-        </Layout>
-    )
+    const titleRef = useRef(null);
+    const overlayRef = useRef(null);
+    const casesRef = useRef(null);
+    const navRef = useRef(null);
+
+    const tl = gsap.timeline();
+    useEffect(() => {
+        let rule = CSSRulePlugin.getRule(`${casesRef}:before`);
+        tl.from(titleRef.current.children, 1, {
+            y: 100,
+            ease: "power4.out",
+            opacity: 0, 
+            delay: 1.5,
+            skewY: 3,
+            stagger: {
+                amount: 0.5
+            }
+        })
+        .to(overlayRef.current.children, 1, {
+            y: '-100%',
+            ease: "power4.out",
+            delay: 0.5,
+            stagger: {
+                amount: 1.2
+            }
+        })
+        .from(navRef.current.children, 1, {
+            opacity: 0
+        })
+
+        console.log(titleRef, overlayRef, navRef, rule);
+
+    })
+  return (
+    <Layout>
+      <Header />
+      <Content>
+        <Banner 
+            ref={[titleRef, overlayRef]}
+        />
+        <Cases 
+            ref={[casesRef, navRef]}
+            posts={caseStudies} 
+        />
+      </Content>
+      <GlobalStyle />
+    </Layout>
+  )
 }
 
 export default Index;
